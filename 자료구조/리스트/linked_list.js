@@ -4,6 +4,23 @@ let LinkedList = function() {
   list.head = null; //초기값 null 할당
   list.tail = null; //초기값 null 할당. single linked 같은경우는 tail 까진 필요가 없지만. 양방향 연결리스트에서 활용하게끔 미리 만들어놈.
 
+  list.addToHead = function(value) {
+    let newNode = new Node(value);
+    
+    if (!list.head) { //만약 리스트의 머리노드 주소가 없다면.
+      list.head = newNode;
+      list.tail = newNode;
+      list.length++;
+    } else { //그게 아니라면??
+      let formelHead = list.head; //현재 머리 노드의 주소를 임시로 저장 하기위해 변수 선언
+      list.head = newNode; // 현재 머리노드를 새로 만든 노드로 변경.
+      list.head.next = formelHead; //새로 만들어진 머리노드의 next(다음 노드)는 
+      list.length++;              //아까 만들어 놓은 formel변수를 통해 할당하고 종료.
+    }
+    return list.head;
+  }
+
+
   list.addToTail = function(value) {
     let newNode = new Node(value);
 
@@ -133,5 +150,8 @@ console.log(list.indexOf(1));
 list.insert(3, 200);
 console.log(list.allElementes());
 console.log(list.isEmpty());
+console.log(list.size());
+list.addToHead(300);
+console.log(list.allElementes());
 console.log(list.size());
 
