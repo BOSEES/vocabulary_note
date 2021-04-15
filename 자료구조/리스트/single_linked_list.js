@@ -52,7 +52,7 @@ let LinkedList = function() {
   }
 
   list.removeAt = function(index) {
-    if (index <= list.length) { //삭제하고 싶은 index보다 리스트의 길이가 크거나 같은 경우만 허용
+    if (index < list.length && index > 0) { //삭제하고 싶은 index보다 리스트의 길이가 크거나 같은 경우만 허용
       let curr = list.head; //일단 list.head값을 curr 변수에 저장.(추가,삭제,조회 등 모든걸 하기 위해선 머리노드의 주소값이 필요함.)
       while(--index !== 0) {//반복문을 통해 삭제하고싶은 인덱스 - 1 만큼 이동.
         curr = curr.next; //머리노드에서 한칸씩 이동하여 curr의 할당.
@@ -62,7 +62,14 @@ let LinkedList = function() {
       delete deleted; // 그리고 노드 삭제.
       list.length--; // 리스트의 길이를  -1 빼주기.
       return deleted.value; //삭제한 노드의 value값을 리턴 하고 종료. (혹시 콘솔로 찍어보기위함.)
+    } else if (index == 0){
+      let curr2 = list.head;
+      list.head = list.head.next;
+      delete curr2;
+      list.length--;
+      return deleted.value;
     }
+    return "인덱스 초과했습니다."
   }
 
   list.allElementes = function() {
@@ -144,7 +151,7 @@ list.addToTail(3);
 list.addToTail(4);
 list.addToTail(5);
 console.log(list.allElementes());
-list.removeAt(3);
+console.log(list.removeAt(5));
 console.log(list.allElementes());
 console.log(list.indexOf(1));
 list.insert(3, 200);
