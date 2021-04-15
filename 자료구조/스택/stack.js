@@ -34,10 +34,16 @@ Stack.prototype.peek = function() {
   return this.array[this.top];
 }
 
+Stack.prototype.length = function() {
+  return this.top + 1;
+}
+
 let stack = new Stack(5);
 
 stack.init();
 stack.push(3);
 stack.push(2);
 stack.push(1);
+stack.pop();
 console.log(stack.peek());
+console.log(stack.length());
