@@ -106,7 +106,7 @@ let LinkedList = function() {
         }
       }
     }
-    return "원소를 찾을수 없습니다.";// 찾고자하는 원소가 없다면 결국 마지막 리턴문까지 도달하게 됨.
+    return console.log("원소를 찾을수 없습니다.");// 찾고자하는 원소가 없다면 결국 마지막 리턴문까지 도달하게 됨.
   }
   //중요한 추상 자료!!!!
   list.insert = function(index, value) { //중간의 데이터를 넣고싶은 index 와 , value를 인풋으로 넣자.

@@ -6,10 +6,10 @@ let LinkedList = function() {
 
   list.addToHead = function(value){
     let newNode = new Node(value);
-
     if(!list.head) { //헤드노드가 null이라면?
       list.head = newNode;
       list.tail = newNode;
+      list.length++;
     } else {
       let curr = list.head
       list.head = newNode;
@@ -27,6 +27,7 @@ let LinkedList = function() {
     if (!list.head) {
       list.head = newNode;
       list.tail = newNode;
+      list.length++;
     } else {
       let curr = list.tail;
       list.tail = newNode;
@@ -40,34 +41,77 @@ let LinkedList = function() {
 
   list.removeAt = function(index) {
     if (index < list.length && index > 0) {
-      if(Math.floor(list.length / 2, 10) < index) {
-        let count = list.length - index;
-        let curr1 = list.tail;
-        while (--count !== 0) {
-          curr1 = curr1.prev;
-        }
-        let deleted = curr1.prev;
-        let curr2 = curr1.prev.prev;
-        curr2.next = curr1;
-        curr1.prev = curr2;
-        delete deleted
-        list.length--;
-      } else {
-        let curr1 = list.head;
-        while (--index !== 0) {
-          curr1 = curr1.next;
-        }
-        let deleted = curr1.next;
-        let curr2 = curr1.next.next;
-        curr1.next = curr2;
-        curr2.prev = curr1;
+      if (index == list.length - 1) {
+        let deleted = list.tail;
+        list.tail = list.tail.prev;
+        list.tail.next = null;
         delete deleted;
         list.length--;
+      } else {
+        if(Math.floor(list.length / 2, 10) < index) {
+          let count = list.length - index;
+          let curr1 = list.tail;
+          while (--count !== 0) {
+            curr1 = curr1.prev;
+          }
+          let deleted = curr1.prev;
+          let curr2 = curr1.prev.prev;
+          curr2.next = curr1;
+          curr1.prev = curr2;
+          delete deleted
+          list.length--;
+        } else {
+          let curr1 = list.head;
+          while (--index !== 0) {
+            curr1 = curr1.next;
+          }
+          let deleted = curr1.next;
+          let curr2 = curr1.next.next;
+          curr1.next = curr2;
+          curr2.prev = curr1;
+          delete deleted;
+          list.length--;
+        }
       }
     } else if (index == 0){
-      
+      let deleted = list.head;
+      list.head = list.head.next;
+      list.head.prev = null;
+      delete deleted;
+      list.length--;
     }
-    return "인덱스가 잘못됬습니다."
+    return console.log("인덱스가 잘못되었습니다.")
+  }
+
+  list.insert = function(index, value) {
+    let newNode = new Node(value);
+    if (Math.floor(list.length / 2, 10) < index) {
+      let count = list.length - index;
+      let curr1 = list.tail;
+      while(--count !== 0) {
+        console.log(count);
+        curr1 = curr1.prev;
+      }
+      let curr2 = curr1.prev;
+      curr1.prev = newNode;
+      curr1.prev.next = curr1;
+      curr2.next = curr1.prev;
+      curr1.prev.prev = curr2;
+      list.length++;
+    } else {
+      let curr1 = list.head;
+      while(--index !== 0) {
+        console.log(index);
+        curr1 = curr1.next;
+      }
+      let curr2 = curr1.next;
+      curr1.next = newNode;
+      curr1.next.prev = curr1;
+      curr1.next.next = curr2;
+      curr2.prev = curr1.next;
+      list.length++
+    }
+    return console.log("추가 성공");
   }
 
   list.allElementes = function() {
@@ -96,13 +140,11 @@ let Node = function(value) {
 }
 
 let list = new LinkedList();
+for (let i = 1; i <= 1000; i++ ){
+  list.addToHead(i);
+}
+let start = new Date();
+list.insert(500,2);
+let end = new Date();
 
-list.addToHead(3);
-list.addToHead(4);
-list.addToHead(5);
-console.log(list.head);
-console.log(list.allElementes());
-list.addToTail(20);
-console.log(list.allElementes());
-list.removeAt(0);
-console.log(list.allElementes());
+console.log(end - start, "ms"); // 성능 측정;
