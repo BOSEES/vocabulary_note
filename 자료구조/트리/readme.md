@@ -107,7 +107,7 @@
                               /                                2 | B |     
                              c                                 3 | - |
                            /                                   4 | C |
-                          D                                    5 | - |
+                          D (terminal node) & (leaf node)      5 | - |
                                                                6 | - |
                                                                7 | - |
                                                                8 | D |
