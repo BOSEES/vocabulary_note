@@ -49,13 +49,13 @@ class Node {
 
 let tree = new Tree();
 
-const n7 = tree.makeBTreeNode(null,"D",null);
-const n6 = tree.makeBTreeNode(null,"C",null);
-const n5 = tree.makeBTreeNode(null,"B",null);
-const n4 = tree.makeBTreeNode(null,"A",null);
-const n3 = tree.makeBTreeNode(n6,"/",n7);
-const n2 = tree.makeBTreeNode(n4,"*",n5);
-const n1 = tree.makeBTreeNode(n2,"-",n3);
+let n7 = tree.makeBTreeNode(null,"D",null);
+let n6 = tree.makeBTreeNode(null,"C",null);
+let n5 = tree.makeBTreeNode(null,"B",null);
+let n4 = tree.makeBTreeNode(null,"A",null);
+let n3 = tree.makeBTreeNode(n6,"/",n7);
+let n2 = tree.makeBTreeNode(n4,"*",n5);
+let n1 = tree.makeBTreeNode(n2,"-",n3);
 
 tree.preOrder(n1);
 tree.inOdrer(n1);
