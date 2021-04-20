@@ -18,7 +18,7 @@ class Heap {
   } 
 
   peek() {
-    this.heap[0]// 항상 최상위 노드가 peek이 됨
+    return this.heap[0]// 항상 최상위 노드가 peek이 됨
   } 
 
   insert(key, value) {
