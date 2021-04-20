@@ -7,6 +7,7 @@ class HashTable {
   // data -> index
   getHash(data) {
     let hash = 0
+    //자릿수 폴딩 (Digit Folding)방법을 이용한 해쉬방법
     for (let i = 0; i < data.length; i++) {
       // charCodeAt() 메서드는 주어진 인덱스에 대한 UTF-16 코드를 나타내는 0부터 65535 사이의 정수
       hash += data.charCodeAt(i)
@@ -25,6 +26,8 @@ class HashTable {
           return
         }
       }
+
+      //이때 옆에 같은 인덱스에 데이터를 연결리스트로 추가하는 방법을 체이닝(Chaining)이라고 한다.
       this.table[index].push([data, value])// 그게 아니라 존재는 하지만 키값이 다르다면 같은 index의 새로운 데이터를 저장.
     } else {
       this.table[index] = [[data, value]] // 인덱스에 존재하지않는다면 그 인덱스에 바로 할당. 이때 배열이 2중으로 중첩시켜야 push를 해줄수 있음.
